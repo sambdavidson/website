@@ -1,0 +1,25 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Hub for all things related to Samuel Davidson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samdamana/website.git"
+  },
+  "keywords": [
+    "samdamana",
+    "samuel",
+    "bonnar",
+    "davidson"
+  ],
+  "author": "Samuel Davidson <samdamana@gmail.com> (http://www.samuelbdavidson.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samdamana/website/issues"
+  },
+  "homepage": "https://github.com/samdamana/website#readme"
+}
