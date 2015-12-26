@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/samdamana/website/issues"
   },
-  "homepage": "https://github.com/samdamana/website#readme"
+  "homepage": "https://github.com/samdamana/website#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
