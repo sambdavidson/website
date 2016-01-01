@@ -1,0 +1,30 @@
+body {
+font-family: 'Open Sans Condensed', sans-serif;
+    background: black;
+}
+a {
+    color:white;
+    font-size: 3em;
+}
+.body-content-container {
+    text-align: center;
+}
+.background-image {
+    width: 15%;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #AABDC7;
+    border-style: solid;
+}
+.name-header{
+    color: whitesmoke;
+    align-content: center;
+    font-size: 7em;
+}
+.links {
+    padding-top: 2em;
+}
+.links-footer {
+    padding-top: 5%;
+    letter-spacing: 1em;
+}

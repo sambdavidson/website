@@ -1,0 +1,32 @@
+{
+  "name": "website",
+  "description": "Hub for all things related to Samuel Davidson",
+  "main": "Server/app.js",
+  "authors": [
+    "Samuel Davidson <samdamana@gmail.com> (http://www.samuelbdavidson.com)"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "samdamana",
+    "samuel",
+    "bonnar",
+    "davidson"
+  ],
+  "homepage": "https://github.com/samdamana/website",
+  "moduleType": [
+    "amd",
+    "es6"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.22",
+    "angular": "angularjs#~1.4.8"
+  }
+}
