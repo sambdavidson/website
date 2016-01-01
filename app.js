@@ -3,10 +3,10 @@ var app = express();
 
 app.use(express.static('Client'));
 app.use(express.static('bower_components'));
+var port = process.env.PORT || 8040;
 
-var server = app.listen(80, function() {
+var server = app.listen(port, function() {
 	var host = server.address().address;
-	var port = server.address().port;
 	
 	console.log('Server listenting at port %s', port);
 })
