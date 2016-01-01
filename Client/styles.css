@@ -28,3 +28,14 @@ a {
     padding-top: 5%;
     letter-spacing: 1em;
 }
+
+.peter-jensen-secret {
+    color: black;
+    font-size:1em;  
+    position: absolute;
+    top:95%;
+    text-decoration: none;
+}
+.peter-jensen-secret:hover {
+    color: #777;
+}
