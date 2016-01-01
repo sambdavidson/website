@@ -1,17 +1,17 @@
+/* Samuel B Davidson Q1 2016*/
 require.config({
     paths : {
         'angular': 'angular/angular',
-        'app':'scripts/app',
-        'coreModule': 'scripts/coreModule'
+        'app':'modules/app'
     },
     shim: {
         'app': {
-            deps: ['angular', 'coreModule']
+            deps: ['angular']
         },
         
-        'coreModule': {
-            deps: ['angular']
-        }
-        
     }
+});
+
+require(['app'], function() {
+    angular.bootstrap(document, ['app']);
 });
