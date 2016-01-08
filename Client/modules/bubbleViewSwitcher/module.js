@@ -1,5 +1,6 @@
-define(['./bubbleViewSwitcherController', './bubbleViewSwitcherDirective'], function(bubbleViewSwitcherController, bubbleViewSwitcherDirective) {
-    return angular.module('bubbleViewSwitcherModule', [])
+define(['./bubbleViewSwitcherController', './bubbleViewSwitcherDirective', './bubbleView/module'], 
+    function(bubbleViewSwitcherController, bubbleViewSwitcherDirective, bubbleView) {
+    return angular.module('bubbleViewSwitcherModule', [bubbleView.name])
     .controller('bubbleViewSwitcherController', bubbleViewSwitcherController)
     .directive('samBubbleViewSwitcher',bubbleViewSwitcherDirective);
 });

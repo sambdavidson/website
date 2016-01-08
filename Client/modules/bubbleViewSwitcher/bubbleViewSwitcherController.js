@@ -1,24 +1,38 @@
 define(function() {
     var controller = function($scope, $timeout) {
-        var bubble = null;
-        var screenMaxLength = screen.width > screen.height ? screen.width : screen.height;
+        var isAtTitle = true;
+        var frontBubble = null;
+        var screenMaxLength = screen.availWidth > screen.availHeight ? screen.availWidth : screen.availHeight;
+        
         $timeout(function() {
-           bubble = document.getElementById('switcher-bubble');
-           var diameter = screenMaxLength * 0.2;
-           bubble.style.width = diameter + "px";
-           bubble.style.height = diameter + "px";
-           
+           frontBubble = document.getElementById('front-container');
+           if(!frontBubble) {
+               console.error('Front Container undefined');
+               return;
+           }
+           var diameter = screenMaxLength * 0.3;
+           frontBubble.style.width = diameter + "px";
+           frontBubble.style.height = diameter + "px";
+           frontBubble.addEventListener("transitionend", bubbleTransitionEnd, false);
         });
         
+        var bubbleTransitionEnd = function() {
+            frontBubble.style.zIndex = -1;
+        }
+    //     var recalculateSizes = function() {
+    //         screenMaxLength = screen.availWidth > screen.availHeight ? screen.availWidth : screen.availHeight;
+    //     }
+    //     window.addEventListener("resize", recalculateSizes);
+    //     recalculateSizes();
+    //     
         $scope.switcherClicked = function() {
-            if(bubble) {
-                bubble.className = "switcher-button switcher-button-clicked";
-                bubble.style.width = (screenMaxLength*1.5) + "px";
-                bubble.style.height = (screenMaxLength*1.5) + "px";
+            if(frontBubble) {
+                frontBubble.className = "cropped-image-container";
+                var diameter = Math.sqrt((screen.availWidth*screen.availWidth) + (screen.availHeight*screen.availHeight));
+                frontBubble.style.width = diameter + "px";
+                frontBubble.style.height = diameter + "px";
             }
         };
-        
-        $scope.viewCanvases = [];
     }
     return ['$scope', '$timeout', controller];
 });
