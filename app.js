@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 
 app.use(express.static('client'));
+app.use('/pluralsight', function(req, res) {
+    res.sendFile('pluralsight.html', {root: './client'});
+});
 app.use(express.static('bower_components'));
 var port = process.env.PORT || 8040;
 
