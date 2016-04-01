@@ -1,7 +1,12 @@
 body {
+<<<<<<< HEAD
     font-family: 'Open Sans Condensed', sans-serif;
     background-color:black;
     overflow: hidden;
+=======
+    background-color: black;
+    font-family: 'Open Sans Condensed', sans-serif;
+>>>>>>> 9218a6299ba0e2c2e746a187e0a07b6c408d22d6
 }
 .swiper {
     position: absolute;
@@ -44,6 +49,7 @@ body {
     top: 67%;
     background-color: #6d9b34;
 }
+<<<<<<< HEAD
 .swiper-bottom-start {
     width: 0%;
 }
@@ -137,6 +143,10 @@ body {
     left: 50%;
     transform: translate(-50%, -20%);
     
+=======
+.body-content-container {
+    text-align: center;
+>>>>>>> 9218a6299ba0e2c2e746a187e0a07b6c408d22d6
 }
 .title-name {
     position: fixed;
