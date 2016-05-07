@@ -1,6 +1,8 @@
 body {
     background-color: black;
     font-family: 'Open Sans Condensed', sans-serif;
+    text-shadow: 2px 2px 1px #444;
+    overflow: hidden;
 }
 a {
     color:white;
@@ -28,3 +30,60 @@ a {
     padding-top: 5%;
     letter-spacing: 1em;
 }
+
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+
+    -webkit-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* custom */
+}
+#bottom-loader {
+    color: white;
+    width: 100%;
+    font-size: 3em;
+    position: absolute;
+    bottom: 0;
+    display: table;
+    table-layout: fixed;
+}
+
+#bottom-loader span{
+    display: table-cell;
+    text-align: center;
+    /*-webkit-animation: bounce 500ms ease-out;*/
+    /*-moz-animation: bounce 500ms ease-out;*/
+    /*-o-animation: bounce 500ms ease-out;*/
+    /*animation: bounce 500ms ease-out;*/
+    -webkit-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* custom */
+}
+.hidden-below {
+    -ms-transform: translateY(100%); /* IE 9 */
+    -webkit-transform: translateY(100%); /* Chrome, Safari, Opera */
+    transform: translateY(100%);
+    opacity: 0;
+}
+.visible-above {
+    -ms-transform: translateY(0); /* IE 9 */
+    -webkit-transform: translateY(0); /* Chrome, Safari, Opera */
+    transform: translateY(0);
+    opacity: 1;
+}
+
+

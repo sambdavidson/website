@@ -7,7 +7,7 @@ require.config({
     shim: {
         'app': {
             deps: ['angular']
-        },
+        }
         
     }
 });
