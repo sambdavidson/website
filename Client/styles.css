@@ -11,7 +11,7 @@ a {
 .body-content-container {
     text-align: center;
 }
-.background-image {
+.portrait-image {
     width: 15%;
     border-radius: 50%;
     border-width: 2px;
@@ -22,6 +22,7 @@ a {
     color: whitesmoke;
     align-content: center;
     font-size: 7em;
+    width: 100%;
 }
 .links {
     padding-top: 2em;
@@ -30,6 +31,21 @@ a {
     padding-top: 5%;
     letter-spacing: 1em;
 }
+
+@media only screen and (max-device-width: 768px) {
+    /* For mobile phones: */
+    .name-header {
+        font-size: 10em;
+    }
+    .portrait-image {
+        width: 50%
+    }
+    a {
+        font-size: 7em;
+    }
+}
+
+/* Desktop Web 2.0 Stuff */
 
 video#bgvid {
     position: fixed;

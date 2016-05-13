@@ -18,7 +18,7 @@
         myVid.setAttribute('autoplay', '');
         myVid.setAttribute('loop', '');
 
-        var possibleVideos = ['hand_gestures', 'multiracial'];
+        var possibleVideos = ['hand_gestures', 'multiracial', 'aurora', 'sunrise', 'code'];
         var selectedVideo = possibleVideos[getRandomInt(0, possibleVideos.length)];
         if(Modernizr.video.webm) {
             myVid.setAttribute('src', 'videos/'+selectedVideo+'.webm');
