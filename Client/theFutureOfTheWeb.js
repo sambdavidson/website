@@ -31,7 +31,9 @@
 
         var loaderDiv = document.getElementById('bottom-loader');
         var loaderText = 'Loading Web 2.0 ... ';
-        var loaderAddons = ['powered by ShutterStock!', 'welcome to the future!', 'hire me!', 'I read that HTML5 video is cool!', 'add me on Snapchat!', 'stay in school!'];
+        //var loaderAddons = ['powered by ShutterStock!', 'welcome to the future!', 'hire me!', 'I read that HTML5 video is cool!', 'add me on Snapchat!', 'stay in school!'];
+        /* Kissing ass to Google */
+        var loaderAddons = ['powered by ShutterStock!', 'Sam is so employable!', 'hire me!', 'I sure do love Google!', 'hire me Google!', 'stay in school!'];
         if(loaderAddons.length > 0) {
             var rand = getRandomInt(0, loaderAddons.length);
             loaderText = loaderText + loaderAddons[rand];
