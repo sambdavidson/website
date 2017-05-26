@@ -1,22 +1,23 @@
 /* Samuel Davidson */
 (function() {
 
-    window.onload = function() {
+    window.addEventListener('load', function() {
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || !Modernizr.video) {
-            /* Mobile doesn't like web videos (I.E. the autoplay bg) so we are just going to abort the mission! */
+            /* Mobile doesn't like web videos (I.E. the autoplay bg) so we are just going to not run this */
             return;
         } else {
             createBackgroundVideo();
         }
 
-    };
+    });
 
     function createBackgroundVideo() {
         /* Create the Snazzy Video Element */
         var myVid = document.createElement('video');
         myVid.setAttribute('id', 'bgvid');
-        myVid.setAttribute('autoplay', '');
+        myVid.setAttribute('autoplay', 'true');
         myVid.setAttribute('loop', '');
+
 
         var possibleVideos = ['hand_gestures', 'multiracial', 'aurora', 'sunrise', 'code'];
         var selectedVideo = possibleVideos[getRandomInt(0, possibleVideos.length)];
@@ -25,14 +26,12 @@
         } else if(Modernizr.video.h264) {
             myVid.setAttribute('src', 'videos/'+selectedVideo+'.mp4');
         }
-        myVid.className = 'hidden-below';
 
         document.body.appendChild(myVid);
 
         var loaderDiv = document.getElementById('bottom-loader');
-        var loaderText = 'Loading Web 2.0 ... ';
-        //var loaderAddons = ['powered by ShutterStock!', 'welcome to the future!', 'hire me!', 'I read that HTML5 video is cool!', 'add me on Snapchat!', 'stay in school!'];
-        var loaderAddons = ['powered by ShutterStock!', 'Sam IS the man!', 'so employable!', 'offer me a job.', 'sometimes broken. :)', 'stay in school kids!'];
+        var loaderText = 'Loading Web 2.0... ';
+        var loaderAddons = ['powered by ShutterStock', '...0.2 beW gnidaoL', 'sometimes it\'s broken', 'stay in school!', 'don\'t do drugs (except the cool ones)'];
         if(loaderAddons.length > 0) {
             var rand = getRandomInt(0, loaderAddons.length);
             loaderText = loaderText + loaderAddons[rand];
@@ -47,24 +46,32 @@
             loaderDiv.appendChild(child);
         }
 
-        function progressHandler() {
+        myVid.addEventListener('error', function(error) {
+            console.error('myVid error event.', this.error, error);
+        });
 
-            if(this.buffered.length <= 0) {
+
+        var intervalId = setInterval(progressHandler, 100);
+        function progressHandler() {
+            myVid.play();
+
+            if(myVid.buffered.length <= 0) {
                 return;
             }
 
-            var percentLoaded = this.buffered.end(0) / this.duration;
+            var percentLoaded = myVid.buffered.end(0) / myVid.duration;
 
             while(((loadedSpans+1)/loaderText.length) <= percentLoaded) {
                 loaderDiv.getElementsByTagName('span')[loadedSpans++].className = 'visible-above';
             }
 
-            if(percentLoaded == 1) {
+            if(percentLoaded === 1) {
                 myVid.currentTime = 0;
                 myVid.removeAttribute('hidden');
                 myVid.className = 'visible-above';
                 setTimeout(loadingTextCleanup, 2000);
-                myVid.removeEventListener('progress', progressHandler);
+                clearInterval(intervalId)
+                //myVid.removeEventListener('progress', progressHandler);
             }
         }
         function loadingTextCleanup() {
@@ -73,11 +80,6 @@
                 children[i].className = 'hidden-below';
             }
         }
-        myVid.addEventListener('progress', progressHandler);
-
-        myVid.addEventListener('error', function(error) {
-            Console.error('myVid error event.', this.error, error);
-        });
     }
 
     // Returns a random integer between min (included) and max (excluded)
