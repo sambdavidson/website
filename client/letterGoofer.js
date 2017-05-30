@@ -1,6 +1,8 @@
 (function() {
     window.addEventListener('load', function() {
+
         //Transform title in to a bunch of letters
+
         var headerEl = document.getElementById('header');
         var title = headerEl.innerHTML.toString();
 

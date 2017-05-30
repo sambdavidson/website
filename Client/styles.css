@@ -45,9 +45,6 @@ a {
     padding-top: 5%;
     letter-spacing: 1em;
 }
-.links-footer a:hover {
-    color:#c4b9bc;
-}
 
 @media only screen and (max-device-width: 768px) {
     /* For mobile phones: */
@@ -117,6 +114,23 @@ video#bgvid {
     -webkit-transform: translateY(0); /* Chrome, Safari, Opera */
     transform: translateY(0);
     opacity: 1;
+}
+
+.linked-in:hover {
+    color: #0077b5;
+    text-shadow: -1px -1px 3px #fff;
+}
+.stack-overflow:hover  {
+    color: #F48024;
+    text-shadow: -1px -1px 3px #fff;
+}
+.github:hover  {
+    color: #b300b3;
+    text-shadow: -1px -1px 3px #fff;
+}
+.friends:hover  {
+    color: #222;
+    text-shadow: -1px -1px 3px #fff;
 }
 
 
