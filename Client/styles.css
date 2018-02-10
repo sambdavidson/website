@@ -1,7 +1,7 @@
 body {
     background-color: black;
     font-family: 'Open Sans Condensed', sans-serif;
-    text-shadow: 2px 2px 1px #444;
+    text-shadow: 2px 2px 1px #262626;
     overflow: hidden;
 }
 a {
@@ -17,7 +17,17 @@ a {
     border-width: 2px;
     border-color: #AABDC7;
     border-style: solid;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
 }
+.portrait-clickable:hover {
+    cursor: pointer;
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
 .name-header{
     color: whitesmoke;
     align-content: center;
@@ -118,19 +128,15 @@ video#bgvid {
 
 .linked-in:hover {
     color: #0077b5;
-    text-shadow: -1px -1px 3px #fff;
+    text-shadow: none;
 }
 .stack-overflow:hover  {
     color: #F48024;
-    text-shadow: -1px -1px 3px #fff;
+    text-shadow: none;
 }
 .github:hover  {
     color: #b300b3;
-    text-shadow: -1px -1px 3px #fff;
-}
-.friends:hover  {
-    color: #222;
-    text-shadow: -1px -1px 3px #fff;
+    text-shadow: none;
 }
 
 
