@@ -35,3 +35,6 @@ node_modules
 
 #Webstorm crap
 .idea
+
+#Webpack stuff
+build

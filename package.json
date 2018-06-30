@@ -2,9 +2,9 @@
   "name": "website",
   "version": "1.0.0",
   "description": "Hub for all things related to Samuel Davidson",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +24,16 @@
   },
   "homepage": "https://github.com/samdamana/website#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.16.3"
   },
-  "engines":{"node": "0.12.6"}
+  "engines": {
+    "node": "0.12.6"
+  },
+  "devDependencies": {
+    "file-loader": "^1.1.11",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.2",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8"
+  }
 }

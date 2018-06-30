@@ -12,7 +12,8 @@ a {
     text-align: center;
 }
 .portrait-image {
-    width: 15%;
+    height: 20vw;
+    width: 20vw;
     border-radius: 50%;
     border-width: 2px;
     border-color: #AABDC7;
@@ -71,7 +72,7 @@ a {
 
 /* Desktop Web 2.0 Stuff */
 
-video#bgvid {
+video.background-video {
     position: fixed;
     top: 50%;
     left: 50%;
