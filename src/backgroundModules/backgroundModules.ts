@@ -11,14 +11,15 @@ export interface BackgroundModule {
 export class BackgroundModules {
 
     private static modules: BackgroundModule[] = [new Shutterstock()];
-    private static runningModule: BackgroundModule | null;
+    private static runningModule: BackgroundModule | null = null;
 
     public static Init() {
         if (!BackgroundModules.deviceIsMobile()) {
             BackgroundModules.runningModule = this.modules[0];
         }
-
-        BackgroundModules.runningModule.Init();
+        if (BackgroundModules.runningModule) {
+            BackgroundModules.runningModule.Init();
+        }
     }
 
     public static PortraitClickBonus() {

@@ -3,9 +3,9 @@
 	<head>
         <title>Samuel Davidson</title>
         <!--bundle.js resolved at runtime from webpack /build/bundle.js -->
-        <script src="bundle.js"></script>
-		<link rel="icon" href="favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="styles.css">
+        <script src="/static/bundle.js"></script>
+		<link rel="icon" href="/static/favicon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="/static/styles.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
@@ -14,14 +14,16 @@
 <body>
 <div class="body-content-container">
     <div id="header" class="noselect name-header">samuel davidson</div>
-    <img id="portrait"
-         src="sam_portrait.jpg"
-         class="portrait-image noselect portrait-clickable"
-         align="middle"
-         draggable="false"/>
-    <div class="links">
+    <div class="portrait-container">
+        <img id="portrait"
+             src="/static/sam_portrait.jpg"
+             class="portrait-image noselect portrait-clickable"
+             align="middle"
+             draggable="false"/>
+    </div>
+    <div class="named-links">
         <div>
-            <a class="shake-slow" href="resume.pdf" target="_blank">R&eacute;sum&eacute;</a>
+            <a class="shake-slow" href="/static/resume.pdf" target="_blank">R&eacute;sum&eacute;</a>
         </div>
         <div>
             <a class="shake-slow" href="https://github.com/Fresh4Less" target="_blank">Fresh4Less</a>
@@ -29,20 +31,20 @@
         <div>
             <a class="shake-slow" href="http://mazenet.net" target="_blank">Mazenet</a>
         </div>
-        <div class="links-footer">
-            <a class="linked-in"
-               title="Sam's LinkedIn"
-               href="https://www.linkedin.com/in/samuelbdavidson"
-               target="_blank"><i class="fa fa-linkedin-square"></i></a>
-            <a class="stack-overflow"
-               title="Sam's StackOverflow"
-               href="http://stackoverflow.com/users/4468518/samuel-davidson"
-               target="_blank"><i class="fa fa-stack-overflow"></i></a>
-            <a class="github"
-               title="Sam's GitHub"
-               href="https://github.com/samdamana"
-               target="_blank"><i class="fa fa-github-square"></i></a>
-        </div>
+    </div>
+    <div class="icon-links">
+        <a class="linked-in"
+           title="Sam's LinkedIn"
+           href="https://www.linkedin.com/in/samuelbdavidson"
+           target="_blank"><i class="fa fa-linkedin-square"></i></a>
+        <a class="stack-overflow"
+           title="Sam's StackOverflow"
+           href="http://stackoverflow.com/users/4468518/samuel-davidson"
+           target="_blank"><i class="fa fa-stack-overflow"></i></a>
+        <a class="github"
+           title="Sam's GitHub"
+           href="https://github.com/samdamana"
+           target="_blank"><i class="fa fa-github-square"></i></a>
     </div>
     <div id="bottom-loader">
         <!-- Loading spans will be inserted here via JS-->

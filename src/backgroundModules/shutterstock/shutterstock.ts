@@ -122,7 +122,7 @@ export class Shutterstock implements BackgroundModule {
         el.muted = true;
         el.autoplay = true;
         el.loop = true;
-        el.src = src;
+        el.src = 'static/' + src;
         return el
     }
 }

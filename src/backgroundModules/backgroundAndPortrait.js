@@ -72,16 +72,16 @@
 
         // Load alt images
         var altOne = new Image();
-        altOne.src = 'images/sam_portrait_alt.jpg';
+        altOne.src = '/static/images/sam_portrait_alt.jpg';
 
         var altTwo = new Image();
-        altTwo.src = 'images/sam_portrait_alt2.jpg';
+        altTwo.src = '/static/images/sam_portrait_alt2.jpg';
 
         var altThree = new Image();
-        altThree.src = 'images/sam_portrait_alt3.jpg';
+        altThree.src = '/static/images/sam_portrait_alt3.jpg';
 
         var altFour = new Image();
-        altFour.src = 'images/sam_portrait_alt4.jpg';
+        altFour.src = '/static/images/sam_portrait_alt4.jpg';
 
         var index = 0;
         var altImageArray = [altOne, altTwo, altThree, altFour];
@@ -132,7 +132,7 @@
         videoElement.setAttribute('autoplay', 'true');
         videoElement.setAttribute('loop', '');
 
-        var src = 'videos/' + name;
+        var src = '/static/videos/' + name;
         if(Modernizr.video.webm) {
             src += '.webm';
         } else if(Modernizr.video.h264) {
