@@ -1,24 +1,25 @@
 import { ClickablePortrait } from '../clickablePortrait/clickablePortrait';
 import { Shutterstock } from './shutterstock/shutterstock';
+import { Pattern } from './patterns/patterns';
 
 export interface BackgroundModule {
     IsMobileFriendly: boolean;
     IsPoorConnectionFriendly: boolean;
     PortraitBonus: ()=>void;
-    Init: ()=>void;
 }
 
 export class BackgroundModules {
 
-    private static modules: BackgroundModule[] = [new Shutterstock()];
+    private static modules: BackgroundModule[] = [];
     private static runningModule: BackgroundModule | null = null;
 
     public static Init() {
-        if (!BackgroundModules.deviceIsMobile()) {
-            BackgroundModules.runningModule = this.modules[0];
-        }
+        // if (!BackgroundModules.deviceIsMobile()) {
+        //     BackgroundModules.runningModule = this.modules[0];
+        // }
+        BackgroundModules.runningModule = new Pattern();
         if (BackgroundModules.runningModule) {
-            BackgroundModules.runningModule.Init();
+            //BackgroundModules.runningModule.Init();
         }
     }
 

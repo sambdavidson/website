@@ -9,7 +9,6 @@ import Dance from './videos/dance.mp4';
 
 export class Shutterstock implements BackgroundModule {
 
-    private loaded: boolean = false;
     private videos = [HandGestures, Multiracial, Aurora, Sunrise, Code];
     private chosenVideo: HTMLVideoElement | null;
     private loadingText = [
@@ -36,15 +35,6 @@ export class Shutterstock implements BackgroundModule {
         this.chosenVideo = null;
         this.loadedSpans = 0;
         this.chosenLoadingText = this.loadingText[Shutterstock.randomInt(0, this.loadingText.length)];
-    }
-
-    public Init() {
-        if (this.loaded) {
-            console.error('already loaded');
-            return;
-        }
-        this.loaded = true;
-
         this.loaderDiv = document.getElementById('bottom-loader') as HTMLDivElement;
         Shutterstock.populateDivWithHiddenSpans(this.loaderDiv, this.chosenLoadingText);
 
