@@ -6,6 +6,7 @@ export interface BackgroundModule {
     IsMobileFriendly: boolean;
     IsPoorConnectionFriendly: boolean;
     PortraitBonus: ()=>void;
+    TearDown: ()=>void;
 }
 
 export class BackgroundModules {
@@ -21,6 +22,8 @@ export class BackgroundModules {
         if (BackgroundModules.runningModule) {
             //BackgroundModules.runningModule.Init();
         }
+
+        // TODO: Add toggles between shutterstock and patterns. Call TearDown(). Add UI buttons.
     }
 
     public static PortraitClickBonus() {

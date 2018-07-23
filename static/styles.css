@@ -2,6 +2,8 @@ html {
     height: 100%;
 }
 body {
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    color: whitesmoke;
     background-color: black;
     font-family: 'Open Sans Condensed', sans-serif;
     text-shadow: 2px 2px 1px #262626;
@@ -12,7 +14,7 @@ body {
 }
 a {
     color:white;
-    font-size: 3em;
+    font-size: 3rem;
 }
 .body-content-container {
     text-align: center;
@@ -41,14 +43,18 @@ a {
     transform: scale(1.1);
 }
 
-.name-header{
-    color: whitesmoke;
+#header {
+    overflow: hidden;
+    font-weight: 700;
     align-content: center;
-    font-size: 7em;
+    font-size: 7rem;
     width: 100%;
     cursor:pointer;
 }
-.name-header:hover {
+
+.header-letter{
+}
+.header-letter:hover {
     text-decoration: underline;
 }
 
@@ -81,7 +87,36 @@ a {
     text-shadow: none;
 }
 
-/* Desktop Web 2.0 Stuff */
+@media only screen and (max-device-width: 768px) {
+    /* For mobile phones: */
+    .name-header {
+        font-size: 8em;
+    }
+
+    a {
+        font-size: 7em;
+    }
+
+    .pattern-button-container-table {
+        font-size: 48px !important;
+    }
+}
+
+/* PATTERN BACKGROUND */
+
+.pattern-button-container-table {
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+/* END PATTERN BACKGROUND*/
+
+/* SHUTTERSTOCK BACKGROUND */
 
 video.background-video {
     position: fixed;
@@ -136,14 +171,5 @@ video.background-video {
     opacity: 1;
 }
 
-@media only screen and (max-device-width: 768px) {
-    /* For mobile phones: */
-    .name-header {
-        font-size: 10em;
-    }
-
-    a {
-        font-size: 7em;
-    }
-}
+/* END SHUTTERSTOCK BACKGROUND*/
 

@@ -58,6 +58,10 @@ export class Shutterstock implements BackgroundModule {
 
     }
 
+    public TearDown() {
+        console.log('tear down shutterstock! TODO!');
+    }
+
     private updateLoadingState(): void {
         if (!this.chosenVideo) {
             return;
