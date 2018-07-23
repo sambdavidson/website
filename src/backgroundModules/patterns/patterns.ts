@@ -112,7 +112,7 @@ Stop with:
         const wOffset = Math.abs((xIndex*squareSize) - (width/2)) / width;
         const hOffset = Math.abs((yIndex*squareSize) - (height/2)) / height;
         const offset = frame + (hOffset * height) + (wOffset * width);
-        return `hsl(${90 + (offset % 270)}, 100%, 50%)`;
+        return `hsl(${(<any>window).hueOffset + (offset % (<any>window).hueRange)}, 100%, 50%)`;
     }
 
     static coloredStatic(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number): string {
@@ -138,5 +138,4 @@ Stop with:
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight
     }
-
 }
