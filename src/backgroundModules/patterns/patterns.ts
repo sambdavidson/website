@@ -5,15 +5,19 @@ interface SquareFrameStyle {
 }
 
 export class Pattern implements BackgroundModule {
-    public IsMobileFriendly = true;
-    public IsPoorConnectionFriendly = true;
+    public static IsMobileFriendly = true;
+    public static IsPoorConnectionFriendly = true;
+    public static IconTooltip = 'Colorful Pixel Background';
+    public static IconFontAwesomeHTML = `<i class="fas fa-th"></i>`;
 
     // Static
-    private styles: SquareFrameStyle[] = [];
-    private canvas: HTMLCanvasElement;
+    private styles: [SquareFrameStyle, string][] = [];
+    private buttons: HTMLTableElement | null;
+    private canvas: HTMLCanvasElement | null;
     private ctx: CanvasRenderingContext2D;
     private buttonContainerTable: HTMLTableElement;
     private boundFrame: ()=>void;
+    private activeAlgorithmName: HTMLTableDataCellElement;
 
     // Animation State
     private frameNumber: number = 0;
@@ -21,6 +25,7 @@ export class Pattern implements BackgroundModule {
     private squareSize: number = 20;
     private hueRange: number = 100;
     private hueOffset: number = 200;
+    private tornDown: boolean = false;
 
     public constructor() {
         /* CANVAS */
@@ -37,18 +42,20 @@ export class Pattern implements BackgroundModule {
         window.addEventListener('resize', this.resizeCanvas.bind(this), false);
         document.body.appendChild(this.canvas);
 
-        /* BUTTONS */
-        this.createButtonContainer();
-
         /* ANIMATION FRAMES */
         this.styles = [
-            Pattern.purpleSwirl,
-            Pattern.rainbowDiamond,
-            Pattern.coloredStatic,
-            Pattern.cyclingRangePatterns,
+            [Pattern.Swirl, 'wrl'],
+            [Pattern.Diamond, 'dai'],
+            [Pattern.coloredStatic, 'stc'],
+            [Pattern.cyclingRangePatterns, 'czy'],
         ];
         this.activeStyle = Math.floor(Math.random() * this.styles.length);
         this.boundFrame = this.renderActiveFrame.bind(this);
+
+        /* BUTTONS */
+        this.buttons = this.createButtonContainer();
+        document.body.appendChild(this.buttons);
+
         window.requestAnimationFrame(this.boundFrame);
 
     }
@@ -64,11 +71,20 @@ export class Pattern implements BackgroundModule {
     }
 
     public TearDown() {
-        // TODO: remove button container.
-        console.log('tear down patterns! TODO!');
+        this.tornDown = true;
+        this.canvas.parentElement.removeChild(this.canvas);
+        this.buttons.parentElement.removeChild(this.buttons);
+        this.canvas = null;
+        this.buttons = null;
+        this.ctx = null;
+        this.activeAlgorithmName = null;
+
     }
 
     private renderActiveFrame() {
+        if (this.tornDown) {
+            return;
+        }
         this.frameNumber++;
         const w = this.canvas.width;
         const h = this.canvas.height;
@@ -77,21 +93,21 @@ export class Pattern implements BackgroundModule {
         const unitsHigh = Math.ceil(h / this.squareSize);
         for (let i = 0; i < unitsWide; i++) {
             for (let j = 0; j < unitsHigh; j++) {
-                this.ctx.fillStyle = this.styles[this.activeStyle](this.frameNumber, w, h, this.squareSize, i, j, this.hueRange, this.hueOffset);
+                this.ctx.fillStyle = this.styles[this.activeStyle][0](this.frameNumber, w, h, this.squareSize, i, j, this.hueRange, this.hueOffset);
                 this.ctx.fillRect(this.squareSize * i, this.squareSize * j, this.squareSize, this.squareSize);
             }
         }
         window.requestAnimationFrame(this.boundFrame);
     }
 
-    static purpleSwirl(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
+    static Swirl(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
         const squaresWide = Math.ceil(width / squareSize);
         const offsetWidth = Math.abs((squaresWide/2) - xIndex);
         const offset = frame + (offsetWidth * yIndex);
         return `hsl(${hueOffset + (offset % hueRange)}, 100%, 50%)`;
     }
 
-    static rainbowDiamond(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
+    static Diamond(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
         const wOffset = Math.abs((xIndex*squareSize) - (width/2)) / width;
         const hOffset = Math.abs((yIndex*squareSize) - (height/2)) / height;
         const offset = frame + (hOffset * height) + (wOffset * width);
@@ -122,7 +138,7 @@ export class Pattern implements BackgroundModule {
         this.canvas.height = window.innerHeight
     }
 
-    private createButtonContainer() {
+    private createButtonContainer(): HTMLTableElement {
         const rangeRow = Pattern.buildValueTableRow(
             this.hueRange.toString(),
             `RANGE of background:\thue = offset + (x % RANGE);`,
@@ -151,25 +167,31 @@ export class Pattern implements BackgroundModule {
         cycleRight.innerHTML = `<i class="fas fa-chevron-right"></i>`;
         cycleRight.addEventListener('click', () => {
             this.activeStyle = (this.activeStyle + 1) % this.styles.length;
+            this.activeAlgorithmName.innerText = this.styles[this.activeStyle][1];
         });
         const cycleLeft = document.createElement('td');
-        cycleLeft.title = 'Previous color pattern';
+        cycleLeft.title = 'Previous pixel render algorithm';
         cycleLeft.innerHTML = `<i class="fas fa-chevron-left"></i>`;
         cycleLeft.addEventListener('click', () => {
             this.activeStyle = this.activeStyle == 0 ? this.styles.length - 1 : this.activeStyle - 1;
+            this.activeAlgorithmName.innerText = this.styles[this.activeStyle][1];
         });
+        const cycleText = document.createElement('td');
+        cycleText.title = 'Change pixel render algorithm';
+        cycleText.innerText = this.styles[this.activeStyle][1];
+        this.activeAlgorithmName = cycleText;
         const cycleRow = document.createElement('tr');
         cycleRow.appendChild(cycleLeft);
-        cycleRow.appendChild(document.createElement('td'));
+        cycleRow.appendChild(cycleText);
         cycleRow.appendChild(cycleRight);
 
         this.buttonContainerTable = document.createElement('table');
-        this.buttonContainerTable.className = 'pattern-button-container-table'; // See CSS for styles
+        this.buttonContainerTable.className = 'corner-button-container-table active-corner'; // See CSS for styles
         this.buttonContainerTable.appendChild(rangeRow);
         this.buttonContainerTable.appendChild(offsetRow);
         this.buttonContainerTable.appendChild(cycleRow);
 
-        document.body.appendChild(this.buttonContainerTable);
+        return this.buttonContainerTable;
     }
 
     private static buildValueTableRow(startValue: string,  title: string, increment: ()=>string, decrement: ()=>string): HTMLTableRowElement {

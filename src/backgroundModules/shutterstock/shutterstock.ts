@@ -8,28 +8,33 @@ import Code from './videos/code.mp4';
 import Dance from './videos/dance.mp4';
 
 export class Shutterstock implements BackgroundModule {
+    public static IsMobileFriendly = false;
+    public static IsPoorConnectionFriendly = false;
+    public static IconTooltip = 'Shutterstock Footage Background';
+    public static IconFontAwesomeHTML = `<i class="fas fa-video"></i>`;
 
     private videos = [HandGestures, Multiracial, Aurora, Sunrise, Code];
     private chosenVideo: HTMLVideoElement | null;
     private loadingText = [
         'powered by ShutterStock',
-        'stay in school kids',
+        'loading the videobits',
+        'buffering your background',
+        'good backgrounds take time',
+        'building better websites',
         'winners don\'t use drugs',
         'loading the background video',
         'follow @samdamana on twitter',
         'diversify your portfolio',
         'load load said the toad',
         'loading stock footage',
-        'it\'s nickeloadingon!'
+        'it\'s nickeLOADINGon!'
     ];
     private chosenLoadingText: string;
     private bonusVideo: HTMLVideoElement | null;
     private loaderDiv: HTMLDivElement;
     private loadingIntervalId: number;
+    private loadedTimeoutId: number;
     private loadedSpans: number;
-
-    public IsMobileFriendly = false;
-    public IsPoorConnectionFriendly = false;
 
     constructor() {
         this.chosenVideo = null;
@@ -59,7 +64,16 @@ export class Shutterstock implements BackgroundModule {
     }
 
     public TearDown() {
-        console.log('tear down shutterstock! TODO!');
+        if (this.chosenVideo && this.chosenVideo.parentElement) {
+            this.chosenVideo.parentElement.removeChild(this.chosenVideo);
+        }
+        while (this.loaderDiv.hasChildNodes()) {
+            this.loaderDiv.removeChild(this.loaderDiv.lastChild);
+        }
+        clearInterval(this.loadingIntervalId);
+        clearTimeout(this.loadedTimeoutId);
+        this.chosenVideo = null;
+        this.bonusVideo = null;
     }
 
     private updateLoadingState(): void {
@@ -85,7 +99,7 @@ export class Shutterstock implements BackgroundModule {
         }
 
         if (percent === 1) {
-            setTimeout(this.finishAndCleanupLoading.bind(this), 2000);
+            this.loadedTimeoutId = setTimeout(this.finishAndCleanupLoading.bind(this), 3000);
             clearInterval(this.loadingIntervalId)
         }
     }

@@ -26,6 +26,7 @@ a {
 .portrait-container {
     flex: 1 0 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -35,16 +36,19 @@ a {
     -moz-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    -moz-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
 .portrait-clickable:hover {
     cursor: pointer;
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -moz-transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
 }
 
 #header {
-    overflow: hidden;
+    flex: 0 0 auto;
     font-weight: 700;
     align-content: center;
     font-size: 7rem;
@@ -68,6 +72,10 @@ a {
                                   supported by Chrome and Opera */
 }
 .named-links {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
     flex: 1 0 auto;
 }
 .icon-links {
@@ -87,6 +95,27 @@ a {
     text-shadow: none;
 }
 
+.corner-button-container-table {
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+}
+
+.corner-button-container-table.bg-selector-corner {
+    font-size: 28px;
+    left: 2px;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.corner-button-container-table.active-corner {
+    font-size: 20px;
+    right: 0;
+    bottom: 50%;
+    transform: translateY(50%)
+}
+
 @media only screen and (max-device-width: 768px) {
     /* For mobile phones: */
     .name-header {
@@ -97,24 +126,10 @@ a {
         font-size: 7em;
     }
 
-    .pattern-button-container-table {
+    .corner-button-container-table.active-corner {
         font-size: 48px !important;
     }
 }
-
-/* PATTERN BACKGROUND */
-
-.pattern-button-container-table {
-    text-align: center;
-    font-weight: bold;
-    font-size: 28px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-}
-
-/* END PATTERN BACKGROUND*/
 
 /* SHUTTERSTOCK BACKGROUND */
 

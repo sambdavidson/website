@@ -22,7 +22,7 @@ export class ClickableLetters {
     private static clickableLetter(letter: string, charSet: string[]): HTMLSpanElement {
         let el = document.createElement('span');
         el.innerHTML = letter;
-        el.className = "name-header";
+        el.className = "header-letter";
         el.onclick = ClickableLetters.letterClickCallback(charSet);
         return el
     }
