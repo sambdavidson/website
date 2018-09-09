@@ -1,15 +1,12 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 
-module.exports = {
-    entry: './src/index.ts',
-    devtool: "inline-source-map", // Comment for prod
+module.exports = merge(common, {
+    mode: 'development',
+    devtool: "inline-source-map",
     module: {
         rules: [
-            {
-                test: /\.ts$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [
@@ -20,7 +17,20 @@ module.exports = {
                         }
                     }
                 ]
-            }, {
+            },
+            {
+                test: /\.(pdf|css)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: ''
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.(mp4|webm)$/,
                 use: [
                     {
@@ -33,11 +43,9 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        extensions: [ '.ts', '.js' ]
-    },
     output: {
-       filename: 'bundle.js',
-       path: path.resolve(__dirname, 'build')
+        filename: 'bundle.js',
+        publicPath: '',
+        path: path.resolve(__dirname, 'build')
     }
-};
+});

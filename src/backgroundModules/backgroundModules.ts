@@ -1,4 +1,3 @@
-import { ClickablePortrait } from '../clickablePortrait/clickablePortrait';
 import { Shutterstock } from './shutterstock/shutterstock';
 import { Pattern } from './patterns/patterns';
 
