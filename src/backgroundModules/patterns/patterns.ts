@@ -46,8 +46,8 @@ export class Pattern implements BackgroundModule {
         this.styles = [
             [Pattern.Swirl, 'wrl'],
             [Pattern.Diamond, 'dai'],
-            [Pattern.coloredStatic, 'stc'],
-            [Pattern.cyclingRangePatterns, 'czy'],
+            [Pattern.ColoredStatic, 'stc'],
+            [Pattern.CyclingRangePatterns, 'czy'],
         ];
         this.activeStyle = Math.floor(Math.random() * this.styles.length);
         this.boundFrame = this.renderActiveFrame.bind(this);
@@ -88,14 +88,18 @@ export class Pattern implements BackgroundModule {
         this.frameNumber++;
         const w = this.canvas.width;
         const h = this.canvas.height;
-        this.ctx.fillStyle = '#5a6476';
         const unitsWide = Math.ceil(w / this.squareSize);
         const unitsHigh = Math.ceil(h / this.squareSize);
+        let lastStyle = null;
+        let frameIsUniform = true;
         for (let i = 0; i < unitsWide; i++) {
             for (let j = 0; j < unitsHigh; j++) {
                 this.ctx.fillStyle = this.styles[this.activeStyle][0](this.frameNumber, w, h, this.squareSize, i, j, this.hueRange, this.hueOffset);
                 this.ctx.fillRect(this.squareSize * i, this.squareSize * j, this.squareSize, this.squareSize);
             }
+        }
+        if (this.frameNumber == 1 && this.canvasIsUniformColor()) {
+            this.hueRange = Math.min(360, Math.max(30, (this.hueRange + 10)));
         }
         window.requestAnimationFrame(this.boundFrame);
     }
@@ -114,7 +118,7 @@ export class Pattern implements BackgroundModule {
         return `hsl(${hueOffset + (offset % hueRange)}, 100%, 50%)`;
     }
 
-    static coloredStatic(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
+    static ColoredStatic(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
         const hue = Math.floor(Math.random() * 360);
         let saturation = '15%';
         let lightness = '15%';
@@ -125,7 +129,7 @@ export class Pattern implements BackgroundModule {
         return `hsl(${hueOffset + (hue % hueRange)}, ${saturation}, ${lightness})`;
     }
 
-    static cyclingRangePatterns(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
+    static CyclingRangePatterns(frame: number, width: number, height: number, squareSize: number, xIndex: number, yIndex: number, hueRange: number, hueOffset: number): string {
         const xOffset = Math.abs((xIndex * squareSize) - (width/2));
         const yOffset = yIndex * squareSize;
         const offset = (xOffset*xOffset) + (yOffset*yOffset);
@@ -192,6 +196,26 @@ export class Pattern implements BackgroundModule {
         this.buttonContainerTable.appendChild(cycleRow);
 
         return this.buttonContainerTable;
+    }
+
+    private canvasIsUniformColor(): boolean {
+        const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        if (imageData.data.length < 4) {
+            return false;
+        }
+        let r = imageData.data[0];
+        let g = imageData.data[1];
+        let b = imageData.data[2];
+        let a = imageData.data[3];
+        for(let i = 4; i+3 < imageData.data.length; i+=4) {
+            if (r != imageData.data[i] ||
+                g != imageData.data[i+1] ||
+                b != imageData.data[i+2] ||
+                a != imageData.data[i+3]) {
+                return false
+            }
+        }
+        return true
     }
 
     private static buildValueTableRow(startValue: string,  title: string, increment: ()=>string, decrement: ()=>string): HTMLTableRowElement {
