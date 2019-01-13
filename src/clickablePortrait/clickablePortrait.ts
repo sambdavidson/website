@@ -25,7 +25,7 @@ export class ClickablePortrait {
 
     private static imageWithSrc(src: any) {
         const img = new Image();
-        img.src = 'static/' + src;
+        img.src = src;
         return img;
     }
 

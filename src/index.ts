@@ -1,6 +1,7 @@
 import { ClickableLetters } from './clickableLetters/clickableLetters';
 import { ClickablePortrait } from './clickablePortrait/clickablePortrait';
 import { BackgroundModules } from './backgroundModules/backgroundModules';
+import { InitializeFaces } from './faces/faces'
 
 window.addEventListener('load', init);
 
@@ -9,4 +10,5 @@ function init() {
     ClickableLetters.InitializeOnElement(headerElement);
     ClickablePortrait.Init();
     BackgroundModules.Init();
+    InitializeFaces()
 }
