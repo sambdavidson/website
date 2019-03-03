@@ -3,16 +3,16 @@
   "description": "Hub for all things related to Samuel Davidson",
   "main": "Server/app.js",
   "authors": [
-    "Samuel Davidson <samdamana@gmail.com> (http://www.samuelbdavidson.com)"
+    "Samuel Davidson <samuel.bonnar.davidson@gmail.com> (http://www.sambdavidson.com)"
   ],
   "license": "ISC",
   "keywords": [
-    "samdamana",
+    "sambdavidson",
     "samuel",
     "bonnar",
     "davidson"
   ],
-  "homepage": "https://github.com/samdamana/website",
+  "homepage": "https://github.com/sambdavidson/website",
   "moduleType": [
     "amd",
     "es6"
