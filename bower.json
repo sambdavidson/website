@@ -3,7 +3,7 @@
   "description": "Hub for all things related to Samuel Davidson",
   "main": "Server/app.js",
   "authors": [
-    "Samuel Davidson <sambdavidson@gmail.com> (http://www.sambdavidson.com)"
+    "Samuel Davidson <samuel.bonnar.davidson@gmail.com> (http://www.sambdavidson.com)"
   ],
   "license": "ISC",
   "keywords": [
