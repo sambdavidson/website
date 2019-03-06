@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samdamana/website.git"
+    "url": "git+https://github.com/sambdavidson/website.git"
   },
   "keywords": [
-    "samdamana",
+    "sambdavidson",
     "samuel",
     "davidson"
   ],
-  "author": "Samuel Davidson <samdamana@gmail.com> (http://www.samuelbdavidson.com)",
+  "author": "Samuel Davidson <sambdavidson@gmail.com> (http://www.sambdavidson.com)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/samdamana/website/issues"
+    "url": "https://github.com/sambdavidson/website/issues"
   },
-  "homepage": "https://github.com/samdamana/website#readme",
+  "homepage": "https://github.com/sambdavidson/website#readme",
   "dependencies": {
     "express": "^4.16.3",
     "html-loader": "^0.5.5",

@@ -20,7 +20,7 @@ module.exports = merge(common, {
                         loader: 'file-loader',
                         options: {
                             emitFile: false,
-                            publicPath: 'https://storage.googleapis.com/www.samdamana.com/static/images/',
+                            publicPath: 'https://storage.googleapis.com/www.sambdavidson.com/static/images/',
                             outputPath: undefined
                         }
                     }
@@ -34,7 +34,7 @@ module.exports = merge(common, {
                         options: {
                             name: '[name].[ext]',
                             emitFile: false,
-                            publicPath: 'https://storage.googleapis.com/www.samdamana.com/static/',
+                            publicPath: 'https://storage.googleapis.com/www.sambdavidson.com/static/',
                             outputPath: undefined
                         }
                     }
@@ -47,7 +47,7 @@ module.exports = merge(common, {
                         loader: 'file-loader',
                         options: {
                             emitFile: false,
-                            publicPath: 'https://storage.googleapis.com/www.samdamana.com/static/videos/',
+                            publicPath: 'https://storage.googleapis.com/www.sambdavidson.com/static/videos/',
                             outputPath: undefined
                         }
                     }
@@ -57,7 +57,7 @@ module.exports = merge(common, {
     },
     output: {
         filename: 'bundle.js',
-        publicPath: 'https://storage.googleapis.com/www.samdamana.com/static/',
+        publicPath: 'https://storage.googleapis.com/www.sambdavidson.com/static/',
         path: path.resolve(__dirname, 'build-prod')
     }
 });
