@@ -81,6 +81,7 @@ export class Pattern implements BackgroundModule {
 
     }
 
+    private checkedForBoringRender: boolean = false;
     private renderActiveFrame() {
         if (this.tornDown) {
             return;
@@ -91,10 +92,25 @@ export class Pattern implements BackgroundModule {
         this.ctx.fillStyle = '#5a6476';
         const unitsWide = Math.ceil(w / this.squareSize);
         const unitsHigh = Math.ceil(h / this.squareSize);
+        let changed = false;
+        let lastStyle = "";
         for (let i = 0; i < unitsWide; i++) {
             for (let j = 0; j < unitsHigh; j++) {
-                this.ctx.fillStyle = this.styles[this.activeStyle][0](this.frameNumber, w, h, this.squareSize, i, j, this.hueRange, this.hueOffset);
+                let newStyle = this.styles[this.activeStyle][0](this.frameNumber, w, h, this.squareSize, i, j, this.hueRange, this.hueOffset);
+                if (lastStyle == "") {
+                    lastStyle = newStyle;
+                } else if (lastStyle != newStyle) {
+                    changed = true;
+                }
+                this.ctx.fillStyle = newStyle;
                 this.ctx.fillRect(this.squareSize * i, this.squareSize * j, this.squareSize, this.squareSize);
+            }
+        }
+        // Check if this initial render is boring (all one color)
+        if (this.styles[this.activeStyle][0] == Pattern.cyclingRangePatterns && !this.checkedForBoringRender) {
+            this.checkedForBoringRender = true;
+            if (!changed) { // If it was boring (no change in color), lets tweak the range.
+                this.hueRange = Math.min(360, Math.max(30, (this.hueRange - 10)));
             }
         }
         window.requestAnimationFrame(this.boundFrame);
